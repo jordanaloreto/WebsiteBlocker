@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Website Blocker
+        </title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                width: 300px;
+                padding: 10px;
+            }
+            input, button {
+                margin: 5px 0;
+                width: 100%;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Website Blocker</h1>
+        <div>
+            <label for="site">Site:</label>
+            <input type="text" id="site" placeholder="youtube.com">
+            <label for="days">Dias (0-6, separados por vírgulas):</label>
+            <input type="text" id="days" placeholder="1,2">
+            <label for="start">Início (hora):</label>
+            <input type="number" id="start" min="0" max="23" placeholder="8">
+            <label for="end">Fim (hora):</label>
+            <input type="number" id="end" min="0" max="23" placeholder="13">
+            <button id="addSite">Adicionar Site</button>
+        </div>
+        <div id="blockedSites"></div>
+        <script src="popup.js"></script>
+    </body>
+</html>
