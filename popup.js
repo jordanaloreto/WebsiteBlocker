@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Excluir';
+                deleteButton.style.width = '60px'; // Ajuste o tamanho do botão aqui
                 deleteButton.addEventListener('click', function() {
                     deleteSiteBlock(site);
                 });
