@@ -1,36 +1,115 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            Website Blocker
-        </title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                width: 300px;
-                padding: 10px;
-            }
-            input, button {
-                margin: 5px 0;
-                width: 100%;
-                padding: 5px;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Website Blocker</h1>
-        <div>
-            <label for="site">Site:</label>
-            <input type="text" id="site" placeholder="youtube.com">
-            <label for="days">Dias (0-6, separados por vírgulas):</label>
-            <input type="text" id="days" placeholder="1,2">
-            <label for="start">Início (hora):</label>
-            <input type="number" id="start" min="0" max="23" placeholder="8">
-            <label for="end">Fim (hora):</label>
-            <input type="number" id="end" min="0" max="23" placeholder="13">
-            <button id="addSite">Adicionar Site</button>
-        </div>
-        <div id="blockedSites"></div>
-        <script src="popup.js"></script>
-    </body>
+<head>
+    <title>Site Blocker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 300px;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+        h1, h2 {
+            font-size: 16px;
+            color: #333;
+        }
+        label {
+            font-size: 14px;
+            margin-top: 10px;
+            display: block;
+        }
+        input[type="text"], input[type="number"], button {
+            width: calc(100% - 20px);
+            padding: 5px;
+            margin: 5px 0;
+        }
+        .days-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .day {
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            user-select: none;
+        }
+        .day.selected {
+            background-color: #007bff;
+            color: white;
+        }
+        .time-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .time-container input {
+            width: 48%;
+        }
+        .blocked-site {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+        }
+        .blocked-site span {
+            flex-grow: 1;
+        }
+        .toggle {
+            position: relative;
+            width: 40px;
+            height: 20px;
+            background-color: #ccc;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s;
+        }
+        .toggle.active {
+            background-color: #007bff;
+        }
+        .toggle.active::after {
+            left: 22px;
+        }
+        .toggle.disabled {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>Website</h1>
+    <input type="text" id="site" placeholder="Digite o website que vc quer bloquear...">
+    <h2>Dias</h2>
+    <div class="days-container">
+        <div class="day" data-day="0">D</div>
+        <div class="day" data-day="1">S</div>
+        <div class="day" data-day="2">T</div>
+        <div class="day" data-day="3">Q</div>
+        <div class="day" data-day="4">Q</div>
+        <div class="day" data-day="5">S</div>
+        <div class="day" data-day="6">S</div>
+    </div>
+    <h2>Horas</h2>
+    <div class="time-container">
+        <input type="time" id="start">
+        <input type="time" id="end">
+    </div>
+    <button id="addSite">Adicionar</button>
+    <div id="blockedSites"></div>
+    <script src="popup.js"></script>
+</body>
 </html>
